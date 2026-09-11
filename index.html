@@ -6,16 +6,26 @@
 
   <title>2358 — GitHub Projects</title>
 
-  <!-- GitHub avatar will be used as favicon -->
-  <link id="favicon" rel="icon" type="image/png" href="">
+  <!-- GitHub avatar used as favicon -->
+  <link
+    id="favicon"
+    rel="icon"
+    type="image/png"
+    href="https://github.com/git2358.png"
+  >
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
+
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -32,9 +42,9 @@
       color: inherit;
     }
 
-    /* =========================
+    /* =========================================================
        HEADER
-    ========================= */
+       ========================================================= */
 
     header {
       background: #010409;
@@ -76,13 +86,14 @@
       font-size: 14px;
     }
 
-    .github-link:hover {
+    .github-link:hover,
+    .github-link:focus {
       color: #58a6ff;
     }
 
-    /* =========================
+    /* =========================================================
        MAIN
-    ========================= */
+       ========================================================= */
 
     main {
       max-width: 1200px;
@@ -90,16 +101,16 @@
       padding: 50px 20px 80px;
     }
 
-    /* =========================
+    /* =========================================================
        PROFILE
-    ========================= */
+       ========================================================= */
 
     .profile {
       display: flex;
       gap: 28px;
       align-items: center;
 
-      margin-bottom: 45px;
+      margin-bottom: 35px;
     }
 
     .avatar {
@@ -113,6 +124,8 @@
       background: #161b22;
 
       object-fit: cover;
+
+      flex-shrink: 0;
     }
 
     .profile-info h1 {
@@ -134,15 +147,48 @@
 
       line-height: 1.6;
 
-      max-width: 650px;
+      max-width: 700px;
     }
 
-    /* =========================
-       REPOSITORY HEADER
-    ========================= */
+    /* =========================================================
+       PROFILE STATS
+       ========================================================= */
 
-    .repo-header {
+    .profile-stats {
       display: flex;
+      flex-wrap: wrap;
+
+      gap: 20px;
+
+      margin-top: 18px;
+
+      color: #8b949e;
+
+      font-size: 13px;
+    }
+
+    .profile-stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .profile-stat strong {
+      color: #e6edf3;
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       SECTION HEADERS
+       ========================================================= */
+
+    .section {
+      margin-top: 45px;
+    }
+
+    .section-header {
+      display: flex;
+
       align-items: center;
       justify-content: space-between;
 
@@ -151,16 +197,137 @@
       margin-bottom: 20px;
     }
 
-    .repo-header h2 {
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .section-title h2 {
       margin: 0;
 
       font-size: 20px;
       font-weight: 600;
     }
 
-    .search {
-      width: 280px;
+    .count {
+      display: inline-flex;
 
+      align-items: center;
+      justify-content: center;
+
+      min-width: 26px;
+      height: 22px;
+
+      padding: 0 7px;
+
+      border-radius: 20px;
+
+      background: #21262d;
+
+      color: #8b949e;
+
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       FEATURED PROJECTS
+       ========================================================= */
+
+    #featured {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 16px;
+    }
+
+    .featured-card {
+      position: relative;
+
+      border: 1px solid #30363d;
+
+      border-radius: 8px;
+
+      padding: 22px;
+
+      background: #161b22;
+
+      transition:
+        border-color .15s ease,
+        transform .15s ease,
+        box-shadow .15s ease;
+    }
+
+    .featured-card:hover {
+      border-color: #58a6ff;
+
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 5px 20px rgba(0,0,0,.25);
+    }
+
+    .featured-label {
+      color: #8b949e;
+
+      font-size: 11px;
+
+      text-transform: uppercase;
+
+      letter-spacing: .08em;
+
+      margin-bottom: 10px;
+    }
+
+    .featured-name {
+      color: #58a6ff;
+
+      font-size: 18px;
+
+      font-weight: 600;
+
+      margin-bottom: 10px;
+
+      word-break: break-word;
+    }
+
+    .featured-description {
+      color: #8b949e;
+
+      font-size: 13px;
+
+      line-height: 1.55;
+
+      min-height: 62px;
+
+      margin-bottom: 16px;
+    }
+
+    /* =========================================================
+       REPOSITORY CONTROLS
+       ========================================================= */
+
+    .repo-controls {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 12px;
+    }
+
+    .controls-right {
+      display: flex;
+
+      gap: 8px;
+    }
+
+    .search,
+    .sort {
       padding: 9px 12px;
 
       border-radius: 6px;
@@ -175,20 +342,29 @@
       font-size: 14px;
     }
 
+    .search {
+      width: 280px;
+    }
+
+    .sort {
+      cursor: pointer;
+    }
+
     .search::placeholder {
       color: #6e7681;
     }
 
-    .search:focus {
+    .search:focus,
+    .sort:focus {
       border-color: #58a6ff;
 
       box-shadow:
         0 0 0 2px rgba(56,139,253,.25);
     }
 
-    /* =========================
-       REPOSITORIES
-    ========================= */
+    /* =========================================================
+       REPOSITORIES GRID
+       ========================================================= */
 
     #repos {
       display: grid;
@@ -249,12 +425,42 @@
 
       min-height: 42px;
 
-      margin-bottom: 18px;
+      margin-bottom: 15px;
     }
 
-    /* =========================
-       REPOSITORY META
-    ========================= */
+    /* =========================================================
+       TOPICS
+       ========================================================= */
+
+    .topics {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 6px;
+
+      margin-bottom: 17px;
+    }
+
+    .topic {
+      display: inline-block;
+
+      padding: 3px 8px;
+
+      border-radius: 20px;
+
+      background: rgba(56,139,253,.12);
+
+      color: #58a6ff;
+
+      font-size: 11px;
+
+      line-height: 1.4;
+    }
+
+    /* =========================================================
+       REPO META
+       ========================================================= */
 
     .repo-meta {
       display: flex;
@@ -298,9 +504,9 @@
       color: #6e7681;
     }
 
-    /* =========================
-       REPOSITORY LINKS
-    ========================= */
+    /* =========================================================
+       REPO LINKS
+       ========================================================= */
 
     .repo-links {
       display: flex;
@@ -338,7 +544,8 @@
         border-color .15s ease;
     }
 
-    .repo-button:hover {
+    .repo-button:hover,
+    .repo-button:focus {
       background: #30363d;
 
       border-color: #8b949e;
@@ -348,9 +555,9 @@
       color: #58a6ff;
     }
 
-    /* =========================
-       LOADING / ERROR
-    ========================= */
+    /* =========================================================
+       STATES
+       ========================================================= */
 
     .loading,
     .error,
@@ -372,9 +579,9 @@
       color: #f85149;
     }
 
-    /* =========================
+    /* =========================================================
        FOOTER
-    ========================= */
+       ========================================================= */
 
     footer {
       border-top: 1px solid #21262d;
@@ -394,9 +601,33 @@
       text-decoration: none;
     }
 
-    /* =========================
+    /* =========================================================
        MOBILE
-    ========================= */
+       ========================================================= */
+
+    @media (max-width: 900px) {
+
+      #featured {
+        grid-template-columns: 1fr;
+      }
+
+      .repo-controls {
+        align-items: stretch;
+
+        flex-direction: column;
+      }
+
+      .controls-right {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+    }
 
     @media (max-width: 700px) {
 
@@ -406,6 +637,8 @@
 
       .profile {
         align-items: flex-start;
+
+        gap: 18px;
       }
 
       .avatar {
@@ -421,14 +654,8 @@
         font-size: 17px;
       }
 
-      .repo-header {
-        align-items: stretch;
-
-        flex-direction: column;
-      }
-
-      .search {
-        width: 100%;
+      .profile-stats {
+        gap: 12px;
       }
 
       #repos {
@@ -438,7 +665,29 @@
       .repo-links {
         flex-wrap: wrap;
       }
+
     }
+
+    @media (max-width: 500px) {
+
+      .profile {
+        flex-direction: column;
+      }
+
+      .controls-right {
+        grid-template-columns: 1fr;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .github-link {
+        display: none;
+      }
+
+    }
+
   </style>
 </head>
 
@@ -452,10 +701,10 @@
       class="brand"
       href="https://github.com/git2358"
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
+      aria-label="git2358 on GitHub"
     >
 
-      <!-- GitHub logo -->
       <svg
         class="github-icon"
         viewBox="0 0 16 16"
@@ -494,7 +743,7 @@
       class="github-link"
       href="https://github.com/git2358"
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
     >
       View on GitHub →
     </a>
@@ -506,14 +755,16 @@
 
 <main>
 
-  <!-- PROFILE -->
+  <!-- =======================================================
+       PROFILE
+       ======================================================= -->
 
   <section class="profile">
 
     <img
       id="avatar"
       class="avatar"
-      src=""
+      src="https://github.com/git2358.png"
       alt="git2358 avatar"
     >
 
@@ -534,20 +785,85 @@
         Loading GitHub profile...
       </div>
 
+      <div class="profile-stats">
+
+        <span class="profile-stat">
+          <strong id="repoStat">—</strong>
+          repositories
+        </span>
+
+        <span class="profile-stat">
+          <strong id="followersStat">—</strong>
+          followers
+        </span>
+
+        <span class="profile-stat">
+          <strong id="followingStat">—</strong>
+          following
+        </span>
+
+      </div>
+
     </div>
 
   </section>
 
 
-  <!-- REPOSITORIES -->
+  <!-- =======================================================
+       FEATURED
+       ======================================================= -->
 
-  <section>
+  <section
+    id="featuredSection"
+    class="section"
+  >
 
-    <div class="repo-header">
+    <div class="section-header">
 
-      <h2>
-        Repositories
-      </h2>
+      <div class="section-title">
+
+        <h2>Featured Projects</h2>
+
+      </div>
+
+    </div>
+
+    <div id="featured">
+
+      <div class="loading">
+        Loading featured projects...
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       ALL REPOSITORIES
+       ======================================================= -->
+
+  <section class="section">
+
+    <div class="section-header">
+
+      <div class="section-title">
+
+        <h2>Repositories</h2>
+
+        <span
+          id="repoCount"
+          class="count"
+        >
+          —
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="repo-controls">
 
       <input
         id="search"
@@ -557,9 +873,45 @@
         aria-label="Search repositories"
       >
 
+      <div class="controls-right">
+
+        <select
+          id="sort"
+          class="sort"
+          aria-label="Sort repositories"
+        >
+
+          <option value="updated">
+            Recently updated
+          </option>
+
+          <option value="created">
+            Recently created
+          </option>
+
+          <option value="stars">
+            Most stars
+          </option>
+
+          <option value="forks">
+            Most forks
+          </option>
+
+          <option value="name">
+            A–Z
+          </option>
+
+        </select>
+
+      </div>
+
     </div>
 
-    <div id="repos">
+
+    <div
+      id="repos"
+      style="margin-top:20px;"
+    >
 
       <div class="loading">
         Loading repositories...
@@ -577,7 +929,7 @@
   <a
     href="https://github.com/git2358"
     target="_blank"
-    rel="noopener"
+    rel="noopener noreferrer"
   >
     github.com/git2358
   </a>
@@ -587,44 +939,152 @@
 
 <script>
 
+  /* =========================================================
+     CONFIGURATION
+     ========================================================= */
+
   const username = "git2358";
+
+
+  /*
+   * Put repository names here that you want to appear
+   * in the Featured Projects section.
+   *
+   * The order here controls the order displayed.
+   *
+   * Example:
+   *
+   * const featuredProjects = [
+   *   "zine",
+   *   "gameboy-camera",
+   *   "gamecube-banner-editor"
+   * ];
+   */
+
+  const featuredProjects = [
+    "zine"
+  ];
+
+
+  /*
+   * Put repository names here that definitely have
+   * a GitHub Pages website.
+   *
+   * This is deliberately manual rather than guessing.
+   *
+   * Example:
+   *
+   * const liveSites = [
+   *   "zine",
+   *   "gameboy-camera"
+   * ];
+   */
+
+  const liveSites = [
+    "zine"
+  ];
+
+
+  /*
+   * GitHub-style language colours.
+   *
+   * These are only used for the small language dot.
+   */
+
+  const languageColors = {
+
+    "JavaScript": "#f1e05a",
+    "TypeScript": "#3178c6",
+    "HTML": "#e34c26",
+    "CSS": "#563d7c",
+    "SCSS": "#c6538c",
+    "Python": "#3572A5",
+    "Java": "#b07219",
+    "C": "#555555",
+    "C++": "#f34b7d",
+    "C#": "#178600",
+    "Objective-C": "#438eff",
+    "Swift": "#F05138",
+    "PHP": "#4F5D95",
+    "Ruby": "#701516",
+    "Go": "#00ADD8",
+    "Rust": "#dea584",
+    "Lua": "#000080",
+    "Shell": "#89e051",
+    "Dart": "#00B4AB",
+    "Kotlin": "#A97BFF",
+    "Assembly": "#6E4C13",
+    "Makefile": "#427819"
+
+  };
+
+
+  /* =========================================================
+     DOM
+     ========================================================= */
 
   const reposContainer =
     document.getElementById("repos");
 
+  const featuredContainer =
+    document.getElementById("featured");
+
   const search =
     document.getElementById("search");
+
+  const sort =
+    document.getElementById("sort");
 
   let repositories = [];
 
 
-  /*
-   * =========================
-   * LOAD PROFILE
-   * =========================
-   */
+  /* =========================================================
+     GITHUB API
+     ========================================================= */
+
+  async function githubFetch(url) {
+
+    const response = await fetch(url, {
+      headers: {
+        "Accept": "application/vnd.github+json"
+      }
+    });
+
+    if (!response.ok) {
+
+      if (response.status === 403) {
+        throw new Error(
+          "GitHub API rate limit reached. Please try again later."
+        );
+      }
+
+      throw new Error(
+        `GitHub returned ${response.status}`
+      );
+
+    }
+
+    return response.json();
+
+  }
+
+
+  /* =========================================================
+     LOAD PROFILE
+     ========================================================= */
 
   async function loadProfile() {
 
     try {
 
-      const response =
-        await fetch(
+      const user =
+        await githubFetch(
           `https://api.github.com/users/${username}`
         );
 
-      if (!response.ok) {
-        throw new Error(
-          `GitHub returned ${response.status}`
-        );
-      }
-
-      const user =
-        await response.json();
-
 
       /*
-       * Profile avatar
+       * Avatar
        */
 
       document.getElementById("avatar").src =
@@ -632,7 +1092,7 @@
 
 
       /*
-       * Use the SAME avatar as favicon
+       * Favicon
        */
 
       document.getElementById("favicon").href =
@@ -640,7 +1100,7 @@
 
 
       /*
-       * Profile name
+       * Name
        */
 
       document.getElementById("displayName").textContent =
@@ -654,6 +1114,20 @@
       document.getElementById("profileDescription").textContent =
         user.bio ||
         "GitHub projects and experiments by git2358.";
+
+
+      /*
+       * Stats
+       */
+
+      document.getElementById("repoStat").textContent =
+        user.public_repos;
+
+      document.getElementById("followersStat").textContent =
+        user.followers;
+
+      document.getElementById("followingStat").textContent =
+        user.following;
 
     }
 
@@ -671,45 +1145,57 @@
   }
 
 
-  /*
-   * =========================
-   * LOAD REPOSITORIES
-   * =========================
-   */
+  /* =========================================================
+     LOAD ALL REPOSITORIES
+     ========================================================= */
 
   async function loadRepositories() {
 
     try {
 
-      const response =
-        await fetch(
-          `https://api.github.com/users/${username}/repos?type=owner&per_page=100&sort=updated`
-        );
+      let page = 1;
 
-      if (!response.ok) {
-
-        throw new Error(
-          `GitHub returned ${response.status}`
-        );
-
-      }
-
-      const data =
-        await response.json();
+      const allRepositories = [];
 
 
       /*
-       * Only include:
+       * GitHub allows up to 100 repositories per page.
        *
-       * 1. Repositories owned by git2358
-       * 2. Repositories that are NOT forks
+       * Continue requesting pages until fewer than 100
+       * repositories are returned.
+       */
+
+      while (true) {
+
+        const pageData =
+          await githubFetch(
+            `https://api.github.com/users/${username}/repos` +
+            `?type=owner&per_page=100&page=${page}&sort=updated`
+          );
+
+
+        allRepositories.push(...pageData);
+
+
+        if (pageData.length < 100) {
+          break;
+        }
+
+
+        page++;
+
+      }
+
+
+      /*
+       * Only keep:
        *
-       * Starred repositories belonging to
-       * other users are therefore excluded.
+       * - repositories actually owned by git2358
+       * - repositories that are not forks
        */
 
       repositories =
-        data.filter(repo =>
+        allRepositories.filter(repo =>
 
           repo.owner.login.toLowerCase() ===
             username.toLowerCase()
@@ -721,6 +1207,24 @@
         );
 
 
+      /*
+       * Update count
+       */
+
+      document.getElementById("repoCount").textContent =
+        repositories.length;
+
+
+      document.getElementById("repoStat").textContent =
+        repositories.length;
+
+
+      /*
+       * Render
+       */
+
+      renderFeatured();
+
       renderRepositories();
 
     }
@@ -729,9 +1233,17 @@
 
       console.error(error);
 
+      featuredContainer.innerHTML = `
+        <div class="error">
+          ${escapeHTML(error.message)}
+        </div>
+      `;
+
       reposContainer.innerHTML = `
         <div class="error">
           Unable to load repositories from GitHub.
+          <br><br>
+          ${escapeHTML(error.message)}
         </div>
       `;
 
@@ -740,11 +1252,140 @@
   }
 
 
-  /*
-   * =========================
-   * RENDER REPOSITORIES
-   * =========================
-   */
+  /* =========================================================
+     RENDER FEATURED PROJECTS
+     ========================================================= */
+
+  function renderFeatured() {
+
+    const featured =
+      featuredProjects
+
+        .map(name =>
+
+          repositories.find(repo =>
+            repo.name.toLowerCase() ===
+            name.toLowerCase()
+          )
+
+        )
+
+        .filter(Boolean);
+
+
+    /*
+     * Hide section completely when there are no
+     * configured featured projects.
+     */
+
+    if (featured.length === 0) {
+
+      document.getElementById(
+        "featuredSection"
+      ).style.display = "none";
+
+      return;
+
+    }
+
+
+    featuredContainer.innerHTML = "";
+
+
+    featured.forEach(repo => {
+
+      const item =
+        document.createElement("article");
+
+      item.className =
+        "featured-card";
+
+
+      const pagesUrl =
+        getPagesUrl(repo);
+
+
+      const liveButton =
+        pagesUrl
+
+          ? `
+            <a
+              class="repo-button live"
+              href="${pagesUrl}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ↗ Live Site
+            </a>
+          `
+
+          : "";
+
+
+      item.innerHTML = `
+
+        <div class="featured-label">
+          Featured Project
+        </div>
+
+        <div class="featured-name">
+          ${escapeHTML(repo.name)}
+        </div>
+
+        <div class="featured-description">
+          ${escapeHTML(
+            repo.description ||
+            "No description provided."
+          )}
+        </div>
+
+        <div class="repo-meta">
+
+          <span class="language">
+
+            <span
+              class="language-dot"
+              style="background:${getLanguageColor(repo.language)}"
+            ></span>
+
+            ${escapeHTML(repo.language || "Other")}
+
+          </span>
+
+          <span class="stars">
+            ★ ${repo.stargazers_count}
+          </span>
+
+        </div>
+
+        <div class="repo-links">
+
+          <a
+            class="repo-button"
+            href="${repo.html_url}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ◇ GitHub
+          </a>
+
+          ${liveButton}
+
+        </div>
+
+      `;
+
+
+      featuredContainer.appendChild(item);
+
+    });
+
+  }
+
+
+  /* =========================================================
+     RENDER REPOSITORIES
+     ========================================================= */
 
   function renderRepositories() {
 
@@ -754,7 +1395,7 @@
         .toLowerCase();
 
 
-    const filtered =
+    let filtered =
       repositories.filter(repo => {
 
         return (
@@ -769,9 +1410,86 @@
             .toLowerCase()
             .includes(query)
 
+          ||
+
+          (repo.topics || [])
+            .some(topic =>
+              topic.toLowerCase().includes(query)
+            )
+
         );
 
       });
+
+
+    /*
+     * SORT
+     */
+
+    switch (sort.value) {
+
+      case "created":
+
+        filtered.sort(
+          (a, b) =>
+            new Date(b.created_at) -
+            new Date(a.created_at)
+        );
+
+        break;
+
+
+      case "stars":
+
+        filtered.sort(
+          (a, b) =>
+            b.stargazers_count -
+            a.stargazers_count
+        );
+
+        break;
+
+
+      case "forks":
+
+        filtered.sort(
+          (a, b) =>
+            b.forks_count -
+            a.forks_count
+        );
+
+        break;
+
+
+      case "name":
+
+        filtered.sort(
+          (a, b) =>
+            a.name.localeCompare(
+              b.name,
+              undefined,
+              {
+                sensitivity: "base"
+              }
+            )
+        );
+
+        break;
+
+
+      case "updated":
+
+      default:
+
+        filtered.sort(
+          (a, b) =>
+            new Date(b.updated_at) -
+            new Date(a.updated_at)
+        );
+
+        break;
+
+    }
 
 
     reposContainer.innerHTML = "";
@@ -793,7 +1511,7 @@
     filtered.forEach(repo => {
 
       const item =
-        document.createElement("div");
+        document.createElement("article");
 
       item.className = "repo";
 
@@ -806,22 +1524,55 @@
         formatDate(repo.updated_at);
 
 
+      const pagesUrl =
+        getPagesUrl(repo);
+
+
       /*
-       * =========================
-       * GITHUB PAGES URL
-       * =========================
-       *
-       * Example:
-       *
-       * github.com/git2358/zine
-       *
-       * becomes:
-       *
-       * https://git2358.github.io/zine/
+       * Topics
        */
 
-      const pagesUrl =
-        `https://${username}.github.io/${encodeURIComponent(repo.name)}/`;
+      const topics =
+        (repo.topics || [])
+          .slice(0, 6)
+          .map(topic =>
+
+            `<span class="topic">
+              ${escapeHTML(topic)}
+            </span>`
+
+          )
+          .join("");
+
+
+      const topicsHTML =
+        topics
+
+          ? `<div class="topics">${topics}</div>`
+
+          : "";
+
+
+      /*
+       * Live Site button
+       */
+
+      const liveButton =
+        pagesUrl
+
+          ? `
+            <a
+              class="repo-button live"
+              href="${pagesUrl}"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open live site for ${escapeHTML(repo.name)}"
+            >
+              ↗ Live Site
+            </a>
+          `
+
+          : "";
 
 
       item.innerHTML = `
@@ -837,12 +1588,15 @@
           )}
         </div>
 
+        ${topicsHTML}
+
         <div class="repo-meta">
 
           <span class="language">
 
             <span
               class="language-dot"
+              style="background:${getLanguageColor(repo.language)}"
             ></span>
 
             ${escapeHTML(language)}
@@ -869,19 +1623,13 @@
             class="repo-button"
             href="${repo.html_url}"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
+            aria-label="Open ${escapeHTML(repo.name)} on GitHub"
           >
             ◇ GitHub
           </a>
 
-          <a
-            class="repo-button live"
-            href="${pagesUrl}"
-            target="_blank"
-            rel="noopener"
-          >
-            ↗ Live Site
-          </a>
+          ${liveButton}
 
         </div>
 
@@ -895,16 +1643,60 @@
   }
 
 
-  /*
-   * =========================
-   * FORMAT DATE
-   * =========================
-   */
+  /* =========================================================
+     GITHUB PAGES URL
+     ========================================================= */
+
+  function getPagesUrl(repo) {
+
+    /*
+     * Only display Live Site when the repository has
+     * been manually configured in liveSites.
+     */
+
+    const enabled =
+      liveSites.some(name =>
+        name.toLowerCase() ===
+        repo.name.toLowerCase()
+      );
+
+
+    if (!enabled) {
+      return null;
+    }
+
+
+    return (
+      `https://${username}.github.io/` +
+      `${encodeURIComponent(repo.name)}/`
+    );
+
+  }
+
+
+  /* =========================================================
+     LANGUAGE COLOUR
+     ========================================================= */
+
+  function getLanguageColor(language) {
+
+    return (
+      languageColors[language] ||
+      "#8b949e"
+    );
+
+  }
+
+
+  /* =========================================================
+     DATE
+     ========================================================= */
 
   function formatDate(date) {
 
     const d =
       new Date(date);
+
 
     return d.toLocaleDateString(
       undefined,
@@ -918,30 +1710,28 @@
   }
 
 
-  /*
-   * =========================
-   * ESCAPE HTML
-   * =========================
-   */
+  /* =========================================================
+     ESCAPE HTML
+     ========================================================= */
 
   function escapeHTML(value) {
 
     const div =
       document.createElement("div");
 
+
     div.textContent =
       value;
+
 
     return div.innerHTML;
 
   }
 
 
-  /*
-   * =========================
-   * SEARCH
-   * =========================
-   */
+  /* =========================================================
+     SEARCH
+     ========================================================= */
 
   search.addEventListener(
     "input",
@@ -949,11 +1739,46 @@
   );
 
 
+  /* =========================================================
+     SORT
+     ========================================================= */
+
   /*
-   * =========================
-   * START
-   * =========================
+   * Remember selected sort order.
    */
+
+  const savedSort =
+    localStorage.getItem(
+      "git2358-sort"
+    );
+
+
+  if (savedSort) {
+
+    sort.value =
+      savedSort;
+
+  }
+
+
+  sort.addEventListener(
+    "change",
+    () => {
+
+      localStorage.setItem(
+        "git2358-sort",
+        sort.value
+      );
+
+      renderRepositories();
+
+    }
+  );
+
+
+  /* =========================================================
+     START
+     ========================================================= */
 
   loadProfile();
 
