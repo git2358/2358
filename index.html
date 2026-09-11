@@ -3,26 +3,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+<meta
+name="theme-color"
+content="#0d1117"
+
+>
+
+<meta
+name="apple-mobile-web-app-capable"
+content="yes"
+
+>
+
+<meta
+name="apple-mobile-web-app-status-bar-style"
+content="black-translucent"
+
+>
+
+<meta
+name="apple-mobile-web-app-title"
+content="2358"
+
+>
+
+<meta
+name="mobile-web-app-capable"
+content="yes"
+
+>
 
   <title>2358 — GitHub Projects</title>
 
-  <!-- iOS / Home Screen -->
-
-  <meta name="theme-color" content="#0d1117">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="2358">
-  <meta name="mobile-web-app-capable" content="yes">
-
-  <!-- GitHub profile avatar -->
-
-  <link
-    id="appleTouchIcon"
-    rel="apple-touch-icon"
-    sizes="180x180"
-    href="https://avatars.githubusercontent.com/git2358"
-  >
+  <!--
+    GitHub profile avatar used as:
+    - browser favicon
+    - iOS Home Screen icon
+    - profile image
+  -->
 
   <link
     id="favicon"
@@ -31,8 +56,21 @@
     href="https://avatars.githubusercontent.com/git2358"
   >
 
+  <link
+    id="appleTouchIcon"
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="https://avatars.githubusercontent.com/git2358"
+  >
+
   <style>
-    * {
+    /* =========================================================
+       RESET
+       ========================================================= */
+
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
@@ -59,6 +97,13 @@
       text-decoration: none;
     }
 
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+
     /* =========================================================
        HEADER
        ========================================================= */
@@ -76,37 +121,46 @@
     }
 
     .header-inner {
+      width: 100%;
       max-width: 1500px;
+
       margin: 0 auto;
       padding: 14px 24px;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 20px;
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
+
       gap: 10px;
 
-      font-weight: 700;
+      color: #e6edf3;
+
       font-size: 16px;
+      font-weight: 700;
     }
 
     .github-icon {
       width: 24px;
       height: 24px;
+
       fill: currentColor;
     }
 
     .header-links {
       display: flex;
       align-items: center;
+
       gap: 18px;
 
       color: #8b949e;
+
       font-size: 14px;
     }
 
@@ -114,15 +168,20 @@
       color: #e6edf3;
     }
 
+
     /* =========================================================
        MAIN
        ========================================================= */
 
     main {
+      width: 100%;
       max-width: 1500px;
+
       margin: 0 auto;
+
       padding: 42px 24px 80px;
     }
+
 
     /* =========================================================
        PROFILE
@@ -131,6 +190,7 @@
     .profile {
       display: flex;
       align-items: center;
+
       gap: 24px;
 
       margin-bottom: 42px;
@@ -140,15 +200,14 @@
       width: 96px;
       height: 96px;
 
-      border-radius: 50%;
-
-      border: 1px solid #30363d;
-
-      background: #161b22;
+      flex: 0 0 auto;
 
       object-fit: cover;
 
-      flex-shrink: 0;
+      border-radius: 50%;
+      border: 1px solid #30363d;
+
+      background: #161b22;
     }
 
     .profile-info {
@@ -158,9 +217,10 @@
     .profile-name {
       margin: 0;
 
+      color: #e6edf3;
+
       font-size: 30px;
       line-height: 1.2;
-
       font-weight: 700;
 
       word-break: break-word;
@@ -175,21 +235,25 @@
     }
 
     .profile-bio {
+      max-width: 800px;
+
       margin: 12px 0 0;
 
       color: #8b949e;
 
-      max-width: 800px;
+      font-size: 15px;
     }
 
     .profile-stats {
       display: flex;
       flex-wrap: wrap;
+
       gap: 18px;
 
       margin-top: 12px;
 
       color: #8b949e;
+
       font-size: 14px;
     }
 
@@ -197,6 +261,7 @@
       color: #e6edf3;
       font-weight: 600;
     }
+
 
     /* =========================================================
        PROJECT HEADER
@@ -215,13 +280,17 @@
     .projects-title {
       margin: 0;
 
+      color: #e6edf3;
+
       font-size: 24px;
       line-height: 1.3;
+      font-weight: 600;
     }
 
     .controls {
       display: flex;
       align-items: center;
+
       gap: 10px;
 
       min-width: 0;
@@ -241,13 +310,18 @@
 
       outline: none;
 
-      font: inherit;
       font-size: 14px;
+    }
+
+    .search::placeholder {
+      color: #6e7681;
     }
 
     .search:focus {
       border-color: #58a6ff;
-      box-shadow: 0 0 0 2px rgba(56, 139, 253, 0.15);
+
+      box-shadow:
+        0 0 0 2px rgba(56, 139, 253, 0.15);
     }
 
     .sort {
@@ -261,48 +335,50 @@
 
       outline: none;
 
-      font: inherit;
       font-size: 14px;
 
       cursor: pointer;
     }
 
+    .sort:focus {
+      border-color: #58a6ff;
+    }
+
+
     /* =========================================================
        PROJECT GRID
+       
+       Mobile / iPhone: 2 columns
+       iPad:             3 columns
+       Desktop:          4 columns
        ========================================================= */
 
     #repos {
       display: grid;
 
-      /* iPhone / mobile */
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
       gap: 22px;
     }
 
-    /* iPad / tablet */
     @media (min-width: 700px) {
       #repos {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns:
+          repeat(3, minmax(0, 1fr));
       }
     }
 
-    /* Desktop */
     @media (min-width: 1000px) {
       #repos {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns:
+          repeat(4, minmax(0, 1fr));
       }
     }
 
-    /* Keep 4 columns on very large screens */
-    @media (min-width: 1500px) {
-      #repos {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-    }
 
     /* =========================================================
-       PROJECT CARD
+       REPOSITORY CARD
        ========================================================= */
 
     .repo-card {
@@ -325,18 +401,27 @@
 
     .repo-card:hover {
       border-color: #58a6ff;
+
       transform: translateY(-2px);
     }
+
+
+    /* =========================================================
+       PROJECT PREVIEW
+       ========================================================= */
 
     .repo-preview {
       position: relative;
 
+      display: block;
+
       width: 100%;
+
       aspect-ratio: 1.91 / 1;
 
-      background: #0d1117;
-
       overflow: hidden;
+
+      background: #0d1117;
     }
 
     .repo-preview img {
@@ -350,11 +435,18 @@
       background: #0d1117;
     }
 
+
+    /* =========================================================
+       PROJECT CONTENT
+       ========================================================= */
+
     .repo-content {
       display: flex;
       flex-direction: column;
 
       flex: 1;
+
+      min-width: 0;
 
       padding: 17px;
     }
@@ -362,9 +454,10 @@
     .repo-name {
       margin: 0;
 
+      color: #e6edf3;
+
       font-size: 17px;
       line-height: 1.35;
-
       font-weight: 600;
 
       word-break: break-word;
@@ -383,11 +476,13 @@
       line-height: 1.5;
 
       display: -webkit-box;
-      -webkit-line-clamp: 4;
+
       -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
 
       overflow: hidden;
     }
+
 
     /* =========================================================
        TOPICS
@@ -403,6 +498,8 @@
     }
 
     .topic {
+      display: inline-block;
+
       padding: 3px 8px;
 
       border-radius: 20px;
@@ -414,8 +511,9 @@
       line-height: 1.4;
     }
 
+
     /* =========================================================
-       REPO META
+       REPOSITORY META
        ========================================================= */
 
     .repo-meta {
@@ -435,6 +533,7 @@
     .meta-item {
       display: inline-flex;
       align-items: center;
+
       gap: 5px;
     }
 
@@ -442,10 +541,13 @@
       width: 10px;
       height: 10px;
 
-      border-radius: 50%;
-
       display: inline-block;
+
+      flex: 0 0 auto;
+
+      border-radius: 50%;
     }
+
 
     /* =========================================================
        BUTTONS
@@ -462,24 +564,22 @@
     .button {
       flex: 1;
 
+      min-width: 0;
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
 
-      min-width: 0;
-
       padding: 8px 10px;
 
+      color: #e6edf3;
+      background: #21262d;
+
+      border: 1px solid #30363d;
       border-radius: 6px;
 
       font-size: 12px;
       font-weight: 600;
-
-      border: 1px solid #30363d;
-
-      background: #21262d;
-
-      color: #e6edf3;
 
       transition:
         background 0.15s ease,
@@ -488,18 +588,21 @@
 
     .button:hover {
       background: #30363d;
+
       border-color: #8b949e;
     }
 
     .button.primary {
+      color: #ffffff;
       background: #238636;
+
       border-color: rgba(240, 246, 252, 0.1);
-      color: white;
     }
 
     .button.primary:hover {
       background: #2ea043;
     }
+
 
     /* =========================================================
        LOADING / EMPTY / ERROR
@@ -510,22 +613,24 @@
 
       padding: 40px 20px;
 
-      text-align: center;
-
       color: #8b949e;
+
+      text-align: center;
     }
 
     .status strong {
       color: #e6edf3;
     }
 
+
     /* =========================================================
-       RESPONSIVE HEADER
+       TABLET / SMALL DESKTOP
        ========================================================= */
 
     @media (max-width: 900px) {
       .projects-header {
         align-items: stretch;
+
         flex-direction: column;
       }
 
@@ -535,9 +640,15 @@
 
       .search {
         flex: 1;
+
         width: auto;
       }
     }
+
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
 
     @media (max-width: 650px) {
       main {
@@ -554,6 +665,7 @@
 
       .profile {
         gap: 16px;
+
         margin-bottom: 30px;
       }
 
@@ -576,6 +688,7 @@
 
       .profile-stats {
         gap: 10px 14px;
+
         font-size: 12px;
       }
 
@@ -604,6 +717,7 @@
 
       .repo-meta {
         gap: 8px;
+
         font-size: 10px;
       }
 
@@ -615,6 +729,11 @@
         width: 100%;
       }
     }
+
+
+    /* =========================================================
+       VERY SMALL PHONES
+       ========================================================= */
 
     @media (max-width: 450px) {
       .profile {
@@ -634,10 +753,12 @@
       }
 
       .topic {
-        font-size: 9px;
         padding: 2px 6px;
+
+        font-size: 9px;
       }
     }
+
 
     /* =========================================================
        REDUCED MOTION
@@ -648,8 +769,8 @@
       *::before,
       *::after {
         scroll-behavior: auto !important;
-        transition: none !important;
         animation: none !important;
+        transition: none !important;
       }
     }
   </style>
@@ -670,31 +791,42 @@
     class="brand"
     href="https://github.com/git2358"
     target="_blank"
-    rel="noopener"
+    rel="noopener noreferrer"
+    aria-label="GitHub profile"
   >
+
     <svg
       class="github-icon"
       viewBox="0 0 16 16"
       aria-hidden="true"
     >
-      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
-      0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-      -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
-      .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-      -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09
-      2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82
-      2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
-      2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+      <path
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53
+        5.47 7.59.4.07.55-.17.55-.38
+        0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94
+        -.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53
+        .63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+        .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
+        0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12
+        0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27
+        s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82
+        .44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15
+        0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48
+        0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38
+        A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
+      />
     </svg>
 
     <span>2358</span>
+
   </a>
+
 
   <nav class="header-links">
     <a
       href="https://github.com/git2358"
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
     >
       GitHub
     </a>
@@ -706,21 +838,28 @@
   </header>
 
   <!-- =======================================================
-       MAIN
+       MAIN CONTENT
        ======================================================= -->
 
   <main>
 
 ```
-<!-- PROFILE -->
+<!-- =====================================================
+     PROFILE
+     ===================================================== -->
 
-<section class="profile">
+<section
+  class="profile"
+  aria-label="GitHub profile"
+>
 
   <img
     id="avatar"
     class="avatar"
     src="https://avatars.githubusercontent.com/git2358"
     alt="GitHub profile avatar"
+    width="96"
+    height="96"
   >
 
   <div class="profile-info">
@@ -770,9 +909,11 @@
 </section>
 
 
-<!-- PROJECTS -->
+<!-- =====================================================
+     PROJECTS
+     ===================================================== -->
 
-<section>
+<section aria-label="GitHub projects">
 
   <div class="projects-header">
 
@@ -788,6 +929,7 @@
         type="search"
         placeholder="Search projects..."
         autocomplete="off"
+        aria-label="Search projects"
       >
 
       <select
@@ -795,10 +937,21 @@
         class="sort"
         aria-label="Sort projects"
       >
-        <option value="updated">Recently updated</option>
-        <option value="created">Recently created</option>
-        <option value="name">Name</option>
-        <option value="stars">Stars</option>
+        <option value="updated">
+          Recently updated
+        </option>
+
+        <option value="created">
+          Recently created
+        </option>
+
+        <option value="name">
+          Name
+        </option>
+
+        <option value="stars">
+          Stars
+        </option>
       </select>
 
     </div>
@@ -820,20 +973,32 @@
   </main>
 
   <script>
+    "use strict";
+
     /* =========================================================
-       CONFIG
+       CONFIGURATION
        ========================================================= */
 
-    const username = "git2358";
+    const USERNAME = "git2358";
 
-    const CACHE_KEY = "git2358-repositories";
-    const CACHE_TIME_KEY = "git2358-repositories-time";
+    const CACHE_KEY =
+      "git2358-repositories";
 
-    const CACHE_DURATION = 5 * 60 * 1000;
+    const CACHE_TIME_KEY =
+      "git2358-repositories-time";
+
+    /*
+      Repository cache lifetime.
+
+      The page can display cached repositories immediately,
+      while still refreshing them from GitHub in the background.
+    */
+    const CACHE_DURATION =
+      5 * 60 * 1000;
 
 
     /* =========================================================
-       DOM
+       DOM REFERENCES
        ========================================================= */
 
     const reposContainer =
@@ -868,21 +1033,21 @@
 
 
     /* =========================================================
-       DATA
+       APPLICATION STATE
        ========================================================= */
 
     let repositories = [];
 
     let currentRepositorySignature = "";
 
-    let hasRendered = false;
+    let hasRenderedRepositories = false;
 
 
     /* =========================================================
        LANGUAGE COLOURS
        ========================================================= */
 
-    const languageColors = {
+    const LANGUAGE_COLORS = {
       JavaScript: "#f1e05a",
       TypeScript: "#3178c6",
       HTML: "#e34c26",
@@ -907,20 +1072,20 @@
 
 
     /* =========================================================
-       GITHUB FETCH
+       GITHUB API
        ========================================================= */
 
     async function githubFetch(url) {
-
       const response = await fetch(url, {
         headers: {
-          Accept: "application/vnd.github+json"
+          Accept:
+            "application/vnd.github+json"
         }
       });
 
       if (!response.ok) {
         throw new Error(
-          `GitHub API error: ${response.status}`
+          `GitHub API request failed: ${response.status}`
         );
       }
 
@@ -929,11 +1094,10 @@
 
 
     /* =========================================================
-       AVATAR / FAVICON
+       UPDATE AVATAR / FAVICON
        ========================================================= */
 
     function updateAvatarIcons(avatarUrl) {
-
       if (!avatarUrl) {
         return;
       }
@@ -959,20 +1123,17 @@
 
 
     /* =========================================================
-       PROFILE
+       LOAD PROFILE
        ========================================================= */
 
     async function loadProfile() {
-
       try {
-
-        const user =
-          await githubFetch(
-            `https://api.github.com/users/${username}`
-          );
+        const user = await githubFetch(
+          `https://api.github.com/users/${USERNAME}`
+        );
 
         profileName.textContent =
-          user.name || username;
+          user.name || USERNAME;
 
         profileUsername.textContent =
           `@${user.login}`;
@@ -982,21 +1143,81 @@
           "GitHub projects and experiments.";
 
         followers.textContent =
-          user.followers;
+          String(user.followers);
 
         following.textContent =
-          user.following;
+          String(user.following);
 
-        updateAvatarIcons(user.avatar_url);
-
-      } catch (error) {
-
-        console.error(
-          "Could not load GitHub profile:",
-          error
+        updateAvatarIcons(
+          user.avatar_url
         );
 
+      } catch (error) {
+        console.error(
+          "Unable to load GitHub profile:",
+          error
+        );
       }
+    }
+
+
+    /* =========================================================
+       PROCESS REPOSITORIES
+       ========================================================= */
+
+    function processRepositories(data) {
+      return data.filter((repo) => {
+        if (!repo.owner) {
+          return false;
+        }
+
+        if (!repo.owner.login) {
+          return false;
+        }
+
+        /*
+          Only repositories actually owned by USERNAME.
+
+          Forks are explicitly excluded.
+        */
+        return (
+          repo.owner.login.toLowerCase() ===
+            USERNAME.toLowerCase() &&
+          repo.fork === false
+        );
+      });
+    }
+
+
+    /* =========================================================
+       REPOSITORY SIGNATURE
+       
+       Used to determine whether the visible project data
+       actually changed before rebuilding the entire grid.
+       ========================================================= */
+
+    function createRepositorySignature(data) {
+      const simplified = data
+        .map((repo) => {
+          return {
+            id: repo.id,
+            name: repo.name,
+            updated_at: repo.updated_at,
+            created_at: repo.created_at,
+            description: repo.description,
+            topics: repo.topics || [],
+            language: repo.language,
+            stargazers_count:
+              repo.stargazers_count,
+            forks_count:
+              repo.forks_count
+          };
+        })
+        .sort((a, b) => {
+          return a.id - b.id;
+        });
+
+      return JSON.stringify(simplified);
     }
 
 
@@ -1005,23 +1226,26 @@
        ========================================================= */
 
     function loadCachedRepositories() {
-
       try {
-
         const saved =
-          localStorage.getItem(CACHE_KEY);
+          localStorage.getItem(
+            CACHE_KEY
+          );
 
         const savedTime =
-          localStorage.getItem(CACHE_TIME_KEY);
+          localStorage.getItem(
+            CACHE_TIME_KEY
+          );
 
         if (!saved || !savedTime) {
           return false;
         }
 
-        const age =
-          Date.now() - Number(savedTime);
+        const cacheAge =
+          Date.now() -
+          Number(savedTime);
 
-        if (age > CACHE_DURATION) {
+        if (cacheAge > CACHE_DURATION) {
           return false;
         }
 
@@ -1032,8 +1256,7 @@
           return false;
         }
 
-        repositories =
-          cached;
+        repositories = cached;
 
         currentRepositorySignature =
           createRepositorySignature(
@@ -1044,14 +1267,13 @@
 
         renderRepositories();
 
-        hasRendered = true;
+        hasRenderedRepositories = true;
 
         return true;
 
       } catch (error) {
-
         console.warn(
-          "Could not load repository cache:",
+          "Unable to load repository cache:",
           error
         );
 
@@ -1061,9 +1283,7 @@
 
 
     function saveRepositoryCache(data) {
-
       try {
-
         localStorage.setItem(
           CACHE_KEY,
           JSON.stringify(data)
@@ -1075,9 +1295,8 @@
         );
 
       } catch (error) {
-
         console.warn(
-          "Could not save repository cache:",
+          "Unable to save repository cache:",
           error
         );
       }
@@ -1085,61 +1304,12 @@
 
 
     /* =========================================================
-       REPOSITORY SIGNATURE
-       =========================================================
-
-       Used to avoid rebuilding the entire grid when GitHub
-       returns exactly the same repository data.
-       ========================================================= */
-
-    function createRepositorySignature(data) {
-
-      return data
-        .map(repo => ({
-          id: repo.id,
-          name: repo.name,
-          updated_at: repo.updated_at,
-          created_at: repo.created_at,
-          description: repo.description,
-          topics: repo.topics,
-          language: repo.language,
-          stargazers_count: repo.stargazers_count,
-          forks_count: repo.forks_count
-        }))
-        .sort((a, b) =>
-          a.id - b.id
-        );
-    }
-
-
-    /* =========================================================
-       UPDATE REPO COUNT
+       REPOSITORY STATISTICS
        ========================================================= */
 
     function updateRepositoryStats() {
-
       repoCount.textContent =
-        repositories.length;
-    }
-
-
-    /* =========================================================
-       PROCESS REPOSITORIES
-       ========================================================= */
-
-    function processRepositories(data) {
-
-      return data.filter(repo => {
-
-        return (
-          repo.owner &&
-          repo.owner.login &&
-          repo.owner.login.toLowerCase() ===
-            username.toLowerCase() &&
-          repo.fork === false
-        );
-
-      });
+        String(repositories.length);
     }
 
 
@@ -1148,114 +1318,102 @@
        ========================================================= */
 
     async function loadRepositories() {
-
       try {
-
         /*
-         * -----------------------------------------------------
-         * First request
-         * -----------------------------------------------------
-         *
-         * We render this batch once so the user doesn't stare
-         * at a blank page while GitHub responds.
-         */
+          First request.
 
+          GitHub allows up to 100 repositories per request.
+        */
         const firstPage =
           await githubFetch(
-            `https://api.github.com/users/${username}/repos?per_page=100&page=1&sort=updated`
+            `https://api.github.com/users/${USERNAME}/repos?per_page=100&page=1&sort=updated`
           );
 
-        let allRepos =
+        let allRepositories =
           processRepositories(firstPage);
 
+
+        /*
+          Render the first batch once.
+
+          If cached data is already identical, nothing is
+          redrawn. This is one of the main things preventing
+          flickering.
+        */
+        const firstSignature =
+          createRepositorySignature(
+            allRepositories
+          );
+
         repositories =
-          allRepos;
+          allRepositories;
 
         updateRepositoryStats();
 
-        const firstSignature =
-          JSON.stringify(
-            createRepositorySignature(
-              repositories
-            )
-          );
-
-        /*
-         * Only render the first batch if it is actually
-         * different from what is already on screen.
-         */
-
         if (
-          !hasRendered ||
-          firstSignature !== currentRepositorySignature
+          !hasRenderedRepositories ||
+          firstSignature !==
+            currentRepositorySignature
         ) {
-
           currentRepositorySignature =
             firstSignature;
 
           renderRepositories();
 
-          hasRendered = true;
+          hasRenderedRepositories = true;
         }
 
 
         /*
-         * -----------------------------------------------------
-         * Additional pages
-         * -----------------------------------------------------
-         *
-         * These are fetched silently.
-         *
-         * We DO NOT render after every page.
-         */
+          If there are exactly 100 results, there may be
+          another page.
 
+          Additional pages are fetched silently.
+          The page is NOT rebuilt after each request.
+        */
         if (firstPage.length === 100) {
-
           let page = 2;
 
           while (true) {
-
             const nextPage =
               await githubFetch(
-                `https://api.github.com/users/${username}/repos?per_page=100&page=${page}&sort=updated`
+                `https://api.github.com/users/${USERNAME}/repos?per_page=100&page=${page}&sort=updated`
               );
 
-            if (!nextPage.length) {
+            if (nextPage.length === 0) {
               break;
             }
 
-            allRepos =
-              allRepos.concat(
-                processRepositories(nextPage)
+            allRepositories =
+              allRepositories.concat(
+                processRepositories(
+                  nextPage
+                )
               );
 
             if (nextPage.length < 100) {
               break;
             }
 
-            page++;
+            page += 1;
           }
         }
 
 
         /*
-         * -----------------------------------------------------
-         * Final update
-         * -----------------------------------------------------
-         *
-         * Render exactly once after all pages have arrived,
-         * but only if something actually changed.
-         */
+          Final result.
 
+          Only rebuild the visible grid if the complete
+          repository collection differs from what is already
+          displayed.
+        */
         const finalSignature =
-          JSON.stringify(
-            createRepositorySignature(
-              allRepos
-            )
+          createRepositorySignature(
+            allRepositories
           );
 
         repositories =
-          allRepos;
+          allRepositories;
 
         updateRepositoryStats();
 
@@ -1263,7 +1421,6 @@
           finalSignature !==
           currentRepositorySignature
         ) {
-
           currentRepositorySignature =
             finalSignature;
 
@@ -1275,25 +1432,25 @@
         );
 
       } catch (error) {
-
         console.error(
-          "Could not load repositories:",
+          "Unable to load repositories:",
           error
         );
 
         /*
-         * If we already have cached repositories, keep them
-         * visible instead of replacing them with an error.
-         */
-
-        if (!repositories.length) {
-
-          reposContainer.innerHTML = `
-            <div class="status">
-              <strong>Could not load projects.</strong><br>
-              Please try again later.
-            </div>
-          `;
+          Don't replace working cached projects with an error.
+        */
+        if (repositories.length === 0) {
+          reposContainer.innerHTML =
+            `
+              <div class="status">
+                <strong>
+                  Could not load projects.
+                </strong>
+                <br>
+                Please try again later.
+              </div>
+            `;
         }
       }
     }
@@ -1304,7 +1461,6 @@
        ========================================================= */
 
     function renderRepositories() {
-
       const query =
         searchInput.value
           .trim()
@@ -1313,9 +1469,12 @@
       const sort =
         sortSelect.value;
 
-      let filtered =
-        repositories.filter(repo => {
 
+      /*
+        Filter
+      */
+      let filtered =
+        repositories.filter((repo) => {
           if (!query) {
             return true;
           }
@@ -1329,31 +1488,29 @@
             .join(" ")
             .toLowerCase();
 
-          return searchableText.includes(query);
+          return searchableText.includes(
+            query
+          );
         });
 
 
-      /* -------------------------------------------------------
-         SORT
-         ------------------------------------------------------- */
-
+      /*
+        Sort
+      */
       filtered.sort((a, b) => {
-
         switch (sort) {
-
           case "name":
-
             return a.name.localeCompare(
               b.name
             );
 
           case "created":
-
-            return new Date(b.created_at) -
-                   new Date(a.created_at);
+            return (
+              new Date(b.created_at) -
+              new Date(a.created_at)
+            );
 
           case "stars":
-
             return (
               b.stargazers_count -
               a.stargazers_count
@@ -1361,36 +1518,35 @@
 
           case "updated":
           default:
-
-            return new Date(b.updated_at) -
-                   new Date(a.updated_at);
+            return (
+              new Date(b.updated_at) -
+              new Date(a.updated_at)
+            );
         }
       });
 
 
-      /* -------------------------------------------------------
-         EMPTY
-         ------------------------------------------------------- */
-
-      if (!filtered.length) {
-
-        reposContainer.innerHTML = `
-          <div class="status">
-            No projects found.
-          </div>
-        `;
+      /*
+        Empty result
+      */
+      if (filtered.length === 0) {
+        reposContainer.innerHTML =
+          `
+            <div class="status">
+              No projects found.
+            </div>
+          `;
 
         return;
       }
 
 
-      /* -------------------------------------------------------
-         BUILD ALL CARDS IN MEMORY
-         -------------------------------------------------------
-         Important for reducing visual flicker.
-         The DOM is updated only once.
-         ------------------------------------------------------- */
+      /*
+        Build the complete grid in memory first.
 
+        This prevents the browser from repainting the page
+        repeatedly while individual cards are added.
+      */
       const fragment =
         document.createDocumentFragment();
 
@@ -1403,18 +1559,18 @@
           .join("");
 
 
-      while (wrapper.firstElementChild) {
-
+      while (
+        wrapper.firstElementChild
+      ) {
         fragment.appendChild(
           wrapper.firstElementChild
         );
       }
 
 
-      /* -------------------------------------------------------
-         ONE DOM UPDATE
-         ------------------------------------------------------- */
-
+      /*
+        ONE DOM replacement.
+      */
       reposContainer.replaceChildren(
         fragment
       );
@@ -1426,15 +1582,14 @@
        ========================================================= */
 
     function createRepositoryCard(repo) {
-
       const imageUrl =
-        `https://opengraph.githubassets.com/1/${username}/${encodeURIComponent(repo.name)}`;
+        `https://opengraph.githubassets.com/1/${USERNAME}/${encodeURIComponent(repo.name)}`;
 
-      const repoUrl =
+      const githubUrl =
         repo.html_url;
 
       const liveUrl =
-        `https://${username}.github.io/${encodeURIComponent(repo.name)}/`;
+        `https://${USERNAME}.github.io/${encodeURIComponent(repo.name)}/`;
 
       const languageColor =
         getLanguageColor(
@@ -1443,11 +1598,13 @@
 
       const topics =
         (repo.topics || [])
-          .map(topic => `
-            <span class="topic">
-              ${escapeHTML(topic)}
-            </span>
-          `)
+          .map((topic) => {
+            return `
+              <span class="topic">
+                ${escapeHTML(topic)}
+              </span>
+            `;
+          })
           .join("");
 
 
@@ -1461,9 +1618,9 @@
 
           <a
             class="repo-preview"
-            href="${escapeHTML(repoUrl)}"
+            href="${escapeHTML(githubUrl)}"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             aria-label="Open ${escapeHTML(repo.name)} on GitHub"
           >
             <img
@@ -1471,7 +1628,6 @@
               alt=""
               loading="lazy"
               decoding="async"
-              onerror="this.style.display='none'"
             >
           </a>
 
@@ -1479,15 +1635,13 @@
           <div class="repo-content">
 
             <h3 class="repo-name">
-
               <a
-                href="${escapeHTML(repoUrl)}"
+                href="${escapeHTML(githubUrl)}"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
               >
                 ${escapeHTML(repo.name)}
               </a>
-
             </h3>
 
 
@@ -1513,14 +1667,15 @@
                 repo.language
                   ? `
                     <span class="meta-item">
-
                       <span
                         class="language-dot"
-                        style="background:${languageColor}"
+                        style="background-color: ${languageColor};"
+                        aria-hidden="true"
                       ></span>
 
-                      ${escapeHTML(repo.language)}
-
+                      ${escapeHTML(
+                        repo.language
+                      )}
                     </span>
                   `
                   : ""
@@ -1528,17 +1683,24 @@
 
 
               <span class="meta-item">
-                ★ ${repo.stargazers_count}
+                ★ ${Number(
+                  repo.stargazers_count
+                )}
               </span>
 
 
               <span class="meta-item">
-                Forks ${repo.forks_count}
+                Forks ${Number(
+                  repo.forks_count
+                )}
               </span>
 
 
               <span class="meta-item">
-                Updated ${formatDate(repo.updated_at)}
+                Updated
+                ${formatDate(
+                  repo.updated_at
+                )}
               </span>
 
             </div>
@@ -1548,9 +1710,9 @@
 
               <a
                 class="button"
-                href="${escapeHTML(repoUrl)}"
+                href="${escapeHTML(githubUrl)}"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
               >
                 GitHub
               </a>
@@ -1560,7 +1722,7 @@
                 class="button primary"
                 href="${escapeHTML(liveUrl)}"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
               >
                 Live Site
               </a>
@@ -1579,13 +1741,12 @@
        ========================================================= */
 
     function getLanguageColor(language) {
-
       if (!language) {
         return "#8b949e";
       }
 
       return (
-        languageColors[language] ||
+        LANGUAGE_COLORS[language] ||
         "#8b949e"
       );
     }
@@ -1596,9 +1757,12 @@
        ========================================================= */
 
     function formatDate(dateString) {
-
       const date =
         new Date(dateString);
+
+      if (Number.isNaN(date.getTime())) {
+        return "Unknown";
+      }
 
       return date.toLocaleDateString(
         undefined,
@@ -1616,18 +1780,19 @@
        ========================================================= */
 
     function escapeHTML(value) {
-
-      if (value === null ||
-          value === undefined) {
+      if (
+        value === null ||
+        value === undefined
+      ) {
         return "";
       }
 
       return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
     }
 
 
@@ -1652,17 +1817,19 @@
         "git2358-sort"
       );
 
-    if (savedSort) {
-
+    if (
+      savedSort === "updated" ||
+      savedSort === "created" ||
+      savedSort === "name" ||
+      savedSort === "stars"
+    ) {
       sortSelect.value =
         savedSort;
     }
 
-
     sortSelect.addEventListener(
       "change",
       () => {
-
         localStorage.setItem(
           "git2358-sort",
           sortSelect.value
@@ -1674,29 +1841,29 @@
 
 
     /* =========================================================
-       START
+       START APPLICATION
        ========================================================= */
 
     /*
-     * Load cached repositories immediately.
-     *
-     * If valid cache exists, the page can display projects
-     * almost instantly while GitHub is refreshed in the
-     * background.
-     */
-
+      Display cached repositories immediately if a valid cache
+      exists.
+    */
     loadCachedRepositories();
 
 
     /*
-     * Load profile and fresh repository data.
-     *
-     * These run independently so the profile does not have
-     * to wait for every repository request.
-     */
-
+      Refresh profile independently.
+    */
     loadProfile();
 
+
+    /*
+      Refresh repositories from GitHub.
+
+      If cached data is already displayed, the user sees that
+      immediately while the API refresh happens in the
+      background.
+    */
     loadRepositories();
 
   </script>
