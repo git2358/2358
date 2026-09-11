@@ -46,6 +46,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 20px;
     }
 
@@ -55,6 +56,7 @@
       gap: 12px;
 
       text-decoration: none;
+
       font-weight: 600;
       font-size: 18px;
     }
@@ -120,12 +122,15 @@
     .username {
       color: #8b949e;
       font-size: 20px;
+
       margin-bottom: 14px;
     }
 
     .profile-description {
       color: #8b949e;
+
       line-height: 1.6;
+
       max-width: 650px;
     }
 
@@ -169,7 +174,9 @@
 
     .search:focus {
       border-color: #58a6ff;
-      box-shadow: 0 0 0 2px rgba(56,139,253,.25);
+
+      box-shadow:
+        0 0 0 2px rgba(56,139,253,.25);
     }
 
     /* =========================
@@ -220,7 +227,9 @@
 
     .repo-name::before {
       content: "▣";
+
       margin-right: 8px;
+
       color: #8b949e;
     }
 
@@ -252,11 +261,15 @@
       color: #8b949e;
 
       font-size: 12px;
+
+      margin-bottom: 18px;
     }
 
     .language {
       display: flex;
+
       align-items: center;
+
       gap: 6px;
     }
 
@@ -275,8 +288,56 @@
     }
 
     .updated {
-      margin-left: auto;
       color: #6e7681;
+    }
+
+    /* =========================
+       REPOSITORY LINKS
+    ========================= */
+
+    .repo-links {
+      display: flex;
+
+      gap: 8px;
+
+      padding-top: 14px;
+
+      border-top: 1px solid #21262d;
+    }
+
+    .repo-button {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 6px;
+
+      padding: 6px 10px;
+
+      border-radius: 6px;
+
+      border: 1px solid #30363d;
+
+      background: #21262d;
+
+      color: #e6edf3;
+
+      font-size: 12px;
+
+      text-decoration: none;
+
+      transition:
+        background .15s ease,
+        border-color .15s ease;
+    }
+
+    .repo-button:hover {
+      background: #30363d;
+      border-color: #8b949e;
+    }
+
+    .repo-button.live {
+      color: #58a6ff;
     }
 
     /* =========================
@@ -321,6 +382,7 @@
 
     footer a {
       color: #58a6ff;
+
       text-decoration: none;
     }
 
@@ -353,6 +415,7 @@
 
       .repo-header {
         align-items: stretch;
+
         flex-direction: column;
       }
 
@@ -364,9 +427,8 @@
         grid-template-columns: 1fr;
       }
 
-      .updated {
-        margin-left: 0;
-        width: 100%;
+      .repo-links {
+        flex-wrap: wrap;
       }
     }
   </style>
@@ -375,6 +437,7 @@
 <body>
 
 <header>
+
   <div class="header-inner">
 
     <a
@@ -384,7 +447,6 @@
       rel="noopener"
     >
 
-      <!-- GitHub mark -->
       <svg
         class="github-icon"
         viewBox="0 0 16 16"
@@ -429,6 +491,7 @@
     </a>
 
   </div>
+
 </header>
 
 
@@ -488,9 +551,11 @@
     </div>
 
     <div id="repos">
+
       <div class="loading">
         Loading repositories...
       </div>
+
     </div>
 
   </section>
@@ -589,7 +654,7 @@
 
       if (!response.ok) {
         throw new Error(
-          `GitHub API returned ${response.status}`
+          `GitHub returned ${response.status}`
         );
       }
 
@@ -598,14 +663,13 @@
 
 
       /*
-       * Only repositories:
+       * Only include repositories:
        *
        * - owned by git2358
        * - NOT forks
        *
-       * Starred repositories are
-       * automatically excluded because
-       * we are requesting owned repos.
+       * Starred repositories belonging
+       * to somebody else are never returned.
        */
 
       repositories =
@@ -679,15 +743,9 @@
     filtered.forEach(repo => {
 
       const item =
-        document.createElement("a");
+        document.createElement("div");
 
       item.className = "repo";
-
-      item.href = repo.html_url;
-
-      item.target = "_blank";
-
-      item.rel = "noopener noreferrer";
 
 
       const language =
@@ -696,6 +754,22 @@
 
       const updated =
         formatDate(repo.updated_at);
+
+
+      /*
+       * GitHub Pages URL
+       *
+       * Example:
+       *
+       * git2358/zine
+       *
+       * becomes:
+       *
+       * https://git2358.github.io/zine/
+       */
+
+      const pagesUrl =
+        `https://${username}.github.io/${encodeURIComponent(repo.name)}/`;
 
 
       item.innerHTML = `
@@ -734,6 +808,28 @@
           <span class="updated">
             Updated ${updated}
           </span>
+
+        </div>
+
+        <div class="repo-links">
+
+          <a
+            class="repo-button"
+            href="${repo.html_url}"
+            target="_blank"
+            rel="noopener"
+          >
+            ◇ GitHub
+          </a>
+
+          <a
+            class="repo-button live"
+            href="${pagesUrl}"
+            target="_blank"
+            rel="noopener"
+          >
+            ↗ Live Site
+          </a>
 
         </div>
 
