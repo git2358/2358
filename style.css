@@ -445,7 +445,7 @@ select {
   font-size: .5rem;
   color: rgba(255,255,255,.5);
   text-align: right;
-  text-shadow: 0 0 1px rgba(0,0,0,.8);
+  text-shadow: 0 0 1px rgba(0,0,0,.5);
   z-index: 9999;
 }
 @media (min-width: 768px) {
