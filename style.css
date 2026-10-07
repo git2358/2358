@@ -448,6 +448,11 @@ select {
   text-shadow: 0 0 1px rgba(0,0,0,.8);
   z-index: 9999;
 }
+@media (min-width: 768px) {
+  .version {
+    position: fixed;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
     *,
