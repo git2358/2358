@@ -8,6 +8,8 @@
 
 const USERNAME = "git2358";
 
+const CACHE_VERSION = "2026-09-24-01";
+
 const CACHE_KEY = `git2358-repositories-${CACHE_VERSION}`;
 const CACHE_TIME_KEY = `git2358-repositories-time-${CACHE_VERSION}`;
 
