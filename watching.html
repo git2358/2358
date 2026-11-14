@@ -94,6 +94,8 @@ document.write('<link rel="stylesheet" href="style.css?v=' + v + '">');
 .manage-token{min-height:34px;padding:0 12px;border:1px solid #30363d;border-radius:6px;background:#21262d;color:#c9d1d9;font-size:12px;cursor:pointer}
 .manage-token:hover{border-color:#8b949e;color:#f0f6fc}
 .status{min-height:22px;margin:0 0 18px;color:#8b949e;font-size:13px}
+.status-link{display:inline-block;margin-left:8px;color:#58a6ff;font-weight:600;text-decoration:none}
+.status-link:hover{text-decoration:underline;color:#79c0ff}
 .status.error{color:#f85149}
 .status.success{color:#3fb950}
 .watching-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
@@ -206,7 +208,12 @@ let loading = false;
 document.querySelector(".version").textContent = v;
 
 function setStatus(message, type) {
-  statusElement.textContent = message;
+  statusElement.replaceChildren(document.createTextNode(message));
+  const link = element("a", "status-link", "See more");
+  link.href = "https://github.com/watching";
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  statusElement.appendChild(link);
   statusElement.className = "status" + (type ? " " + type : "");
 }
 
