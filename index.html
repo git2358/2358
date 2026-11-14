@@ -77,6 +77,11 @@ var sourceText = sourceFiles.map(function (path) {
 var v = sha256Hex(sourceText).slice(0, 16);
 document.write('<link rel="stylesheet" href="style.css?v='+v+'">');
 </script>
+<style>
+.watching-nav{margin-left:auto;display:flex;align-items:center;gap:16px;color:#8b949e;font-size:14px}
+.watching-nav a:hover{color:#f0f6fc}
+@media(max-width:650px){.watching-nav{gap:10px;font-size:12px}}
+</style>
 </head>
 
 <body>
@@ -108,6 +113,11 @@ document.write('<link rel="stylesheet" href="style.css?v='+v+'">');
         <div class="header-title">
             2358 <span>— GitHub Projects</span>
         </div>
+
+        <nav class="watching-nav" aria-label="Main navigation">
+            <a href="watching.html">Watching</a>
+            <a href="https://github.com/git2358" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
     </div>
 </header>
 
