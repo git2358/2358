@@ -88,6 +88,11 @@ document.write('<link rel="stylesheet" href="style.css?v=' + v + '">');
 .action-button:hover{background:#2ea043}
 .action-button:disabled{opacity:.55;cursor:wait}
 .token-note{margin:10px 0 0;color:#8b949e;font-size:12px}
+.token-panel[hidden],.connection-tools button[hidden]{display:none}
+.connection-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 18px}
+.connection-tools .status{margin:0;flex:1}
+.manage-token{min-height:34px;padding:0 12px;border:1px solid #30363d;border-radius:6px;background:#21262d;color:#c9d1d9;font-size:12px;cursor:pointer}
+.manage-token:hover{border-color:#8b949e;color:#f0f6fc}
 .status{min-height:22px;margin:0 0 18px;color:#8b949e;font-size:13px}
 .status.error{color:#f85149}
 .status.success{color:#3fb950}
@@ -147,10 +152,10 @@ document.write('<link rel="stylesheet" href="style.css?v=' + v + '">');
         <button id="loadButton" class="action-button" type="submit">Load watched repositories</button>
       </div>
     </form>
-    <p class="token-note">Your token is used only in this browser tab to request data from api.github.com. It is not saved or sent anywhere else.</p>
+    <p class="token-note">Your token is saved in this browser local storage so this page can reconnect automatically next time. It is sent only to api.github.com. Anyone with access to this browser profile can potentially access it; use a token with read-only permissions.</p>
   </section>
 
-  <p id="status" class="status" role="status" aria-live="polite">Enter your token to load your watched repositories.</p>
+  <div class="connection-tools"><p id="status" class="status" role="status" aria-live="polite">Enter your token to load your watched repositories.</p><button id="manageTokenButton" class="manage-token" type="button" hidden>Change token / Disconnect</button></div>
 
   <div class="projects-header">
     <h2 class="projects-title">Repositories <span id="repoCount" class="projects-count"></span></h2>
@@ -191,6 +196,9 @@ const searchInput = document.getElementById("search");
 const languageSelect = document.getElementById("language");
 const sortSelect = document.getElementById("sort");
 const repoCount = document.getElementById("repoCount");
+const tokenPanel = document.querySelector(".token-panel");
+const manageTokenButton = document.getElementById("manageTokenButton");
+const TOKEN_STORAGE_KEY = "2358_watching_github_token";
 
 let repositories = [];
 let loading = false;
@@ -223,6 +231,11 @@ function element(tag, className, text) {
 function safeRepositoryUrl(repo) {
   const url = repo.html_url || "";
   return /^https:\/\/github\.com\/[^/]+\/[^/]+\/?$/.test(url) ? url : "https://github.com";
+}
+
+function showTokenPanel(show) {
+  tokenPanel.hidden = !show;
+  manageTokenButton.hidden = show;
 }
 
 async function loadAllRepositories(token) {
@@ -392,14 +405,23 @@ tokenForm.addEventListener("submit", async event => {
 
   try {
     repositories = await loadAllRepositories(token);
+    localStorage.setItem(TOKEN_STORAGE_KEY, token);
     updateLanguageOptions();
     renderRepositories();
+    showTokenPanel(false);
     setStatus("Loaded " + repositories.length.toLocaleString() + " watched repositories. All pages have been combined.", "success");
   } catch (error) {
     repositories = [];
     repoCount.textContent = "";
     renderRepositories();
-    setStatus(error.message || "Unable to load watched repositories.", "error");
+    if (error.message && error.message.indexOf("rejected this token") !== -1) {
+      localStorage.removeItem(TOKEN_STORAGE_KEY);
+      showTokenPanel(true);
+      setStatus(error.message + " The saved token has been removed; enter a new one.", "error");
+    } else {
+      showTokenPanel(true);
+      setStatus(error.message || "Unable to load watched repositories.", "error");
+    }
   } finally {
     loading = false;
     loadButton.disabled = false;
@@ -407,9 +429,35 @@ tokenForm.addEventListener("submit", async event => {
   }
 });
 
+manageTokenButton.addEventListener("click", () => {
+  showTokenPanel(true);
+  tokenInput.value = "";
+  setStatus("Enter a replacement token, or use Disconnect to remove the saved token.");
+  tokenInput.focus();
+});
+
+const disconnectButton = element("button", "manage-token", "Disconnect");
+disconnectButton.type = "button";
+disconnectButton.addEventListener("click", () => {
+  localStorage.removeItem(TOKEN_STORAGE_KEY);
+  tokenInput.value = "";
+  repositories = [];
+  updateLanguageOptions();
+  renderRepositories();
+  showTokenPanel(true);
+  setStatus("Saved token removed from this browser.", "success");
+});
+tokenPanel.appendChild(disconnectButton);
+
 searchInput.addEventListener("input", renderRepositories);
 languageSelect.addEventListener("change", renderRepositories);
 sortSelect.addEventListener("change", renderRepositories);
+
+const savedToken = localStorage.getItem(TOKEN_STORAGE_KEY);
+if (savedToken) {
+  tokenInput.value = savedToken;
+  tokenForm.requestSubmit();
+}
 </script>
 </body>
 </html>
